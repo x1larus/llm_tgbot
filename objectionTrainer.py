@@ -22,7 +22,6 @@ class ObjectionTrainer:
 
     def get_next_objection(self):
         "Получает следующее возражение из пула"
-        from config import Config
 
         pool = Config.OBJECTIONS_POOL.get(self.client_type, [])
         if not pool:

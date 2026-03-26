@@ -1,7 +1,23 @@
-from datetime import datetime
-import telebot
+from telebot.types import KeyboardButton, ReplyKeyboardMarkup, ReplyKeyboardRemove
+import config
 
-def log_msg(message: telebot.types.Message):
-    time = datetime.fromtimestamp(message.date)
-    timeStr = f'{time.hour}:{time.minute}:{time.second}'
-    print(f'[{message.chat.username}][{timeStr}]: {message.text}')
+def print_header(text):
+    "Печатает заголовок с рамкой"
+    res = ''
+    res += "\n" + "-" * 10 + '\n'
+    res += f" {text}" + '\n'
+    res += "-" * 10 + '\n'
+    return res
+
+def returnToMenuMarkup():
+    markup = ReplyKeyboardMarkup(resize_keyboard=True)
+    btn = KeyboardButton('Вернуться в меню')
+    markup.row(btn)
+    return markup
+
+def menuMarkup():
+    markup = ReplyKeyboardMarkup(resize_keyboard=True)
+    for x in config.client_types:
+        btn = KeyboardButton(x)
+        markup.row(btn)
+    return markup

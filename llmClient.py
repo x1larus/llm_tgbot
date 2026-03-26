@@ -2,7 +2,6 @@ import logging
 import requests
 import random
 import re
-import json
 from config import Config
 
 logging.basicConfig(level=logging.INFO)

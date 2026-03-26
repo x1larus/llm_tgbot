@@ -6,6 +6,15 @@ load_dotenv()
 
 bot = telebot.TeleBot(os.getenv("BOT_TOKEN"))
 
+user_sessions_dict = dict()
+
+client_types = {
+    'Скептик (всё отрицает, просит доказательства)': 'skeptic',
+    'Занятой (вечно спешит, нет времени)': 'busy',
+    'Экономный (считает каждую копейку)': 'economical',
+    'Агрессивный (грубит и хамит)': 'aggressive'
+}
+
 def initializeWebhookServer():
     bot.remove_webhook()
     bot.set_webhook(url=os.getenv("WEBHOOK_URL_BASE") + os.getenv("WEBHOOK_URL_PATH"),
